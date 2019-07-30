@@ -1,16 +1,15 @@
 import Global from '../Global';
-import hashids from 'hashids';
+import Hashids from 'hashids';
 
-class Node {
+export class Node {
     constructor(x,y, parent) {
-        this._id = hashids.encode(x,y);
+        this._id =  new Hashids().encode(x,y);
         this.parent = parent;
         this.x = x;
         this.y = y;
         this.visited = false;
         this.neighbour = [];
-        this.shortestPaths = new Object();
-        getCost();
+        this.getCost();
     }
 
     getCost() {
@@ -31,17 +30,23 @@ class Node {
     getUnvisitedNeighbour() {
         return this.neighbour.filter(each => !each.visited);
     }
+
+    removeNeighbour(node) {
+        this.neighbour = this.neighbour.filter(item => item !== node);
+    }
 };
 
 export class DijkstraPathFinder {
     constructor(start, destination) {
         this.start = start;
         this.destination = destination;
+        this.shortestPaths = new Object();
+        this.shortestPathFrom(destination);
     }
 
     scanAround(node) {
-        let c = coordinate.x;
-        let r = coodinate.y;
+        let c = node.x;
+        let r = node.y;
 
         if(this.isPassible(r+1, c) && this.notCollideParent(r + 1, c, node)){
             let neighbour = new Node(r + 1, c);
@@ -60,6 +65,8 @@ export class DijkstraPathFinder {
             node.addNeighbour(neighbour);
         }
 
+        return node.getUnvisitedNeighbour();
+
     }
 
     isPassible(r, c){
@@ -75,12 +82,31 @@ export class DijkstraPathFinder {
     }
 
     shortestPathFrom(goal) {
-        let shortestPath = new Object();
         let currNode = new Node(this.x, this.y);
-        while(currNode !== null && !currNode.visited) {
-            currNeighBours = currNode.getUnvisitedNeighbour();
-            if(this.explorable(node)) {};
+        while(currNode && !currNode.visited) {
+            let currNeighBours = currNode.getUnvisitedNeighbour();
+            if(this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
+                let unvisited = this.scanAround(currNode);
+                try{
+                    currNode = unvisited[0];
+                } catch (e) {
+                    // If no children left to visit, go back to the parent.
+                    currNode = currNode.parent;
+                }
+            } else {
+                if(currNode.parent) {
+                    currNode.parent.removeNeighbour(currNode);
+                }
+                currNode.visited = true;
+                currNode = currNode.parent;
+            }
         }
+        console.log(this.shortestPaths);
+        return this.shortestPaths;
+    }
+
+    isNotDestination(node) {
+        return node._id !== this.destination._id;
     }
 
     explorable(node) {
@@ -96,6 +122,7 @@ export class DijkstraPathFinder {
             if(currNode.size < currSize) {
                 while(currNode.parent) {
                     currPath.push(currNode.getCoordinate());
+                    currNode = currNode.parent;
                 }
                 currPath.push(currNode.getCoordinate());
                 this.shortestPaths[node._id] = currPath;
@@ -104,7 +131,14 @@ export class DijkstraPathFinder {
                 return false;
             }
         } catch (e) {
-
+            /* if not in the dictionary */
+            while(currNode.parent) {
+                currPath.push(currNode.getCoordinate());
+                currNode = currNode.parent;
+            }
+            currPath.push(currNode.getCoordinate());
+            this.shortestPaths[node._id] = currPath;
+            return true;
         }
     }
 }

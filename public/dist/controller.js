@@ -9735,6 +9735,12 @@ var Global = function () {
             return [[1, 1, 1, 1, 2, 1, 1, 1, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [2, 1, 1, 1, 1, 1, 1, 1, 2], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 1, 1, 1, 2, 1, 1, 1, 1]];
         }
     }, {
+        key: "getLimit",
+        value: function getLimit() {
+            var grid = this.getGrid();
+            return Object({ x: grid[0].length, y: grid.length });
+        }
+    }, {
         key: "getBSize",
         value: function getBSize() {
             /* 
@@ -9749,6 +9755,11 @@ var Global = function () {
             Set resolution of the canvas
             */
             return 720;
+        }
+    }, {
+        key: "convertToGrid",
+        value: function convertToGrid(x, y) {
+            return [x / this.getBSize(), y / this.getBSize()];
         }
     }, {
         key: "getHost",

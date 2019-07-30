@@ -1,5 +1,8 @@
 import Component from './Component';
 import Global from '../Global';
+import { DijkstraPathFinder } from './DijkstraPathFinder';
+import { Node } from './DijkstraPathFinder';
+
 export default class Monster extends Component {
     /* 
     Monster:
@@ -35,36 +38,54 @@ export default class Monster extends Component {
         }
     }
     automove() {
+        this.socket.on("update", playerList => {
+            let currentPostion = Global.convertToGrid(this.x, this.y);
+            let start = new Node(currentPostion[0], currentPostion[1], null);
+            let shortestPath = [];
+            for(let i in playerList) {
+                let player = playerList[i];
+                let playerPositon = new Node(player.x, player.y, null);
+                let finder = new DijkstraPathFinder(start, playerPositon);
+                // console.log('finder', finder);
+                if(shortestPath.length == 0) {
+                    shortestPath = finder;
+                } else if(finder.length < shortestPath.length) {
+                    shortestPath = finder;
+                }
+            }
+            console.log(shortestPath);
+        });
         /* 
         Random pattern move algorithm.
         */
-        var patternA = [1,1,1,1,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,1,3,3,3,3,1,1,1,1,0,0,0,0];
-        var patternB = [2,2,2,2,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,0,0,0,0,2,0,0,0,0,2,2,2,2,3,3,3,3];
-        var self = this;
-        var choices = Math.floor(Math.random() * Math.floor(2));
-        var stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
-        this.auto = setInterval(function () {
-            var choice = stepMove.pop();
-            if (choice == undefined) {
-                choices = Math.floor(Math.random() * Math.floor(2));
-                stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
-            }
-            switch(choice) {
-                case 0:
-                    self.moveLeft();
-                    break;
-                case 1:
-                    self.moveUp();
-                    break;
-                case 2:
-                    self.moveDown();
-                    break;
-                case 3:
-                    self.moveRight();
-                    break;
-            }
-            self.socket.emit("move", self.getPosition());
-        }, 1000/4);
+        // var patternA = [1,1,1,1,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,1,3,3,3,3,1,1,1,1,0,0,0,0];
+        // var patternB = [2,2,2,2,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,0,0,0,0,2,0,0,0,0,2,2,2,2,3,3,3,3];
+        // var self = this;
+        // var choices = Math.floor(Math.random() * Math.floor(2));
+        // var stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
+        // this.auto = setInterval(function () {
+        //     var choice = stepMove.pop();
+        //     if (choice == undefined) {
+        //         choices = Math.floor(Math.random() * Math.floor(2));
+        //         stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
+        //     }
+        //     switch(choice) {
+        //         case 0:
+        //             self.moveLeft();
+        //             break;
+        //         case 1:
+        //             self.moveUp();
+        //             break;
+        //         case 2:
+        //             self.moveDown();
+        //             break;
+        //         case 3:
+        //             self.moveRight();
+        //             break;
+        //     }
+        //     self.socket.emit("move", self.getPosition());
+        // }, 1000/4);
+
     }
     init() {
         /* 
@@ -77,7 +98,7 @@ export default class Monster extends Component {
             self.checkKill();
         })
         this.socket.on("endGame", () => {
-            clearInterval(this.auto);
+            // clearInterval(this.auto);
         })
     }
 }

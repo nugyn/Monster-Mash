@@ -2253,7 +2253,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"base64-js":5,"buffer":8,"ieee754":29}],9:[function(require,module,exports){
+},{"base64-js":5,"buffer":8,"ieee754":30}],9:[function(require,module,exports){
 /**
  * Slice reference.
  */
@@ -3211,7 +3211,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-},{"./transport":14,"./transports/index":15,"component-emitter":10,"debug":21,"engine.io-parser":23,"indexof":30,"parseqs":34,"parseuri":35}],14:[function(require,module,exports){
+},{"./transport":14,"./transports/index":15,"component-emitter":10,"debug":21,"engine.io-parser":23,"indexof":31,"parseqs":35,"parseuri":36}],14:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -4335,7 +4335,7 @@ Polling.prototype.uri = function () {
   return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 };
 
-},{"../transport":14,"component-inherit":11,"debug":21,"engine.io-parser":23,"parseqs":34,"xmlhttprequest-ssl":20,"yeast":51}],19:[function(require,module,exports){
+},{"../transport":14,"component-inherit":11,"debug":21,"engine.io-parser":23,"parseqs":35,"xmlhttprequest-ssl":20,"yeast":52}],19:[function(require,module,exports){
 (function (Buffer){
 /**
  * Module dependencies.
@@ -4632,7 +4632,7 @@ WS.prototype.check = function () {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"../transport":14,"buffer":8,"component-inherit":11,"debug":21,"engine.io-parser":23,"parseqs":34,"ws":7,"yeast":51}],20:[function(require,module,exports){
+},{"../transport":14,"buffer":8,"component-inherit":11,"debug":21,"engine.io-parser":23,"parseqs":35,"ws":7,"yeast":52}],20:[function(require,module,exports){
 // browser shim for xmlhttprequest module
 
 var hasCORS = require('has-cors');
@@ -4870,7 +4870,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":22,"_process":36}],22:[function(require,module,exports){
+},{"./debug":22,"_process":37}],22:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -5097,7 +5097,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":32}],23:[function(require,module,exports){
+},{"ms":33}],23:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -6032,6 +6032,9 @@ try {
 }
 
 },{}],29:[function(require,module,exports){
+!function(t,e){if("function"==typeof define&&define.amd)define(["exports"],e);else if("undefined"!=typeof exports)e(exports);else{var s={};e(s),t.Hashids=s}}(this,function(t){"use strict";function h(t,e){for(var s=0;s<e.length;s++){var h=e[s];h.enumerable=h.enumerable||!1,h.configurable=!0,"value"in h&&(h.writable=!0),Object.defineProperty(t,h.key,h)}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var e=function(){function u(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"",e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:0,s=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,u);var h,a,n="";this.escapeRegExp=function(t){return t.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")},this.parseInt=function(t,e){return/^(-|\+)?([0-9]+|Infinity)$/.test(t)?parseInt(t,e):NaN},this.seps="cfhistuCFHISTU",this.minLength=0<parseInt(e,10)?e:0,this.salt="string"==typeof t?t:"","string"==typeof s&&(this.alphabet=s);for(var r=0;r!==this.alphabet.length;r++)-1===n.indexOf(this.alphabet.charAt(r))&&(n+=this.alphabet.charAt(r));if(this.alphabet=n,this.alphabet.length<16)throw"error: alphabet must contain at least X unique characters".replace("X",16);if(-1!==this.alphabet.search(" "))throw"error: alphabet cannot contain spaces";for(var i=0;i!==this.seps.length;i++){var l=this.alphabet.indexOf(this.seps.charAt(i));-1===l?this.seps=this.seps.substr(0,i)+" "+this.seps.substr(i+1):this.alphabet=this.alphabet.substr(0,l)+" "+this.alphabet.substr(l+1)}this.alphabet=this.alphabet.replace(/ /g,""),this.seps=this.seps.replace(/ /g,""),this.seps=this._shuffle(this.seps,this.salt),(!this.seps.length||3.5<this.alphabet.length/this.seps.length)&&(h=Math.ceil(this.alphabet.length/3.5))>this.seps.length&&(a=h-this.seps.length,this.seps+=this.alphabet.substr(0,a),this.alphabet=this.alphabet.substr(a)),this.alphabet=this._shuffle(this.alphabet,this.salt);var p=Math.ceil(this.alphabet.length/12);this.alphabet.length<3?(this.guards=this.seps.substr(0,p),this.seps=this.seps.substr(p)):(this.guards=this.alphabet.substr(0,p),this.alphabet=this.alphabet.substr(p))}var t,e,s;return t=u,(e=[{key:"encode",value:function(){for(var t=arguments.length,e=new Array(t),s=0;s<t;s++)e[s]=arguments[s];if(!e.length)return"";if(e[0]&&e[0].constructor===Array&&!(e=e[0]).length)return"";for(var h=0;h!==e.length;h++)if(e[h]=this.parseInt(e[h],10),!(0<=e[h]))return"";return this._encode(e)}},{key:"decode",value:function(t){return t&&t.length&&"string"==typeof t?this._decode(t,this.alphabet):[]}},{key:"encodeHex",value:function(t){if(t=t.toString(),!/^[0-9a-fA-F]+$/.test(t))return"";for(var e=t.match(/[\w\W]{1,12}/g),s=0;s!==e.length;s++)e[s]=parseInt("1"+e[s],16);return this.encode.apply(this,e)}},{key:"decodeHex",value:function(t){for(var e=[],s=this.decode(t),h=0;h!==s.length;h++)e+=s[h].toString(16).substr(1);return e}},{key:"_encode",value:function(t){for(var e,s=this.alphabet,h=0,a=0;a!==t.length;a++)h+=t[a]%(a+100);for(var n=e=s.charAt(h%s.length),r=0;r!==t.length;r++){var i=t[r],l=n+this.salt+s;s=this._shuffle(s,l.substr(0,s.length));var p=this._toAlphabet(i,s);if(e+=p,r+1<t.length){var u=(i%=p.charCodeAt(0)+r)%this.seps.length;e+=this.seps.charAt(u)}}if(e.length<this.minLength){var o=(h+e[0].charCodeAt(0))%this.guards.length,f=this.guards[o];(e=f+e).length<this.minLength&&(o=(h+e[2].charCodeAt(0))%this.guards.length,e+=f=this.guards[o])}for(var c=parseInt(s.length/2,10);e.length<this.minLength;){var g=(e=(s=this._shuffle(s,s)).substr(c)+e+s.substr(0,c)).length-this.minLength;0<g&&(e=e.substr(g/2,this.minLength))}return e}},{key:"_decode",value:function(t,e){var s=[],h=0,a=new RegExp("[".concat(this.escapeRegExp(this.guards),"]"),"g"),n=t.replace(a," "),r=n.split(" ");if(3!==r.length&&2!==r.length||(h=1),void 0!==(n=r[h])[0]){var i=n[0];n=n.substr(1),a=new RegExp("[".concat(this.escapeRegExp(this.seps),"]"),"g"),r=(n=n.replace(a," ")).split(" ");for(var l=0;l!==r.length;l++){var p=r[l],u=i+this.salt+e;e=this._shuffle(e,u.substr(0,e.length)),s.push(this._fromAlphabet(p,e))}this.encode(s)!==t&&(s=[])}return s}},{key:"_shuffle",value:function(t,e){var s;if(!e.length)return t;for(var h=(t=t.split("")).length-1,a=0,n=0,r=0;0<h;h--,a++){a%=e.length,n+=s=e.charCodeAt(a);var i=t[r=(s+a+n)%h];t[r]=t[h],t[h]=i}return t=t.join("")}},{key:"_toAlphabet",value:function(t,e){for(var s="";s=e.charAt(t%e.length)+s,t=parseInt(t/e.length,10););return s}},{key:"_fromAlphabet",value:function(t,s){return t.split("").map(function(t){return s.indexOf(t)}).reduce(function(t,e){return t*s.length+e},0)}}])&&h(t.prototype,e),s&&h(t,s),u}();t.default=e});
+
+},{}],30:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -6117,7 +6120,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
@@ -6128,7 +6131,7 @@ module.exports = function(arr, obj){
   }
   return -1;
 };
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 var ip = exports;
@@ -6546,7 +6549,7 @@ ip.fromLong = function(ipl) {
       (ipl & 255) );
 };
 
-},{"buffer":8,"os":33}],32:[function(require,module,exports){
+},{"buffer":8,"os":34}],33:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -6700,7 +6703,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 exports.endianness = function () { return 'LE' };
 
 exports.hostname = function () {
@@ -6751,7 +6754,7 @@ exports.homedir = function () {
 	return '/'
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /**
  * Compiles a querystring
  * Returns string representation of the object
@@ -6790,7 +6793,7 @@ exports.decode = function(qs){
   return qry;
 };
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -6831,7 +6834,7 @@ module.exports = function parseuri(str) {
     return uri;
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -7017,7 +7020,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -7113,7 +7116,7 @@ exports.connect = lookup;
 exports.Manager = require('./manager');
 exports.Socket = require('./socket');
 
-},{"./manager":38,"./socket":40,"./url":41,"debug":42,"socket.io-parser":45}],38:[function(require,module,exports){
+},{"./manager":39,"./socket":41,"./url":42,"debug":43,"socket.io-parser":46}],39:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -7688,7 +7691,7 @@ Manager.prototype.onreconnect = function () {
   this.emitAll('reconnect', attempt);
 };
 
-},{"./on":39,"./socket":40,"backo2":3,"component-bind":9,"component-emitter":10,"debug":42,"engine.io-client":12,"indexof":30,"socket.io-parser":45}],39:[function(require,module,exports){
+},{"./on":40,"./socket":41,"backo2":3,"component-bind":9,"component-emitter":10,"debug":43,"engine.io-client":12,"indexof":31,"socket.io-parser":46}],40:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -7714,7 +7717,7 @@ function on (obj, ev, fn) {
   };
 }
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -8154,7 +8157,7 @@ Socket.prototype.binary = function (binary) {
   return this;
 };
 
-},{"./on":39,"component-bind":9,"component-emitter":10,"debug":42,"has-binary2":26,"parseqs":34,"socket.io-parser":45,"to-array":50}],41:[function(require,module,exports){
+},{"./on":40,"component-bind":9,"component-emitter":10,"debug":43,"has-binary2":26,"parseqs":35,"socket.io-parser":46,"to-array":51}],42:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -8231,11 +8234,11 @@ function url (uri, loc) {
   return obj;
 }
 
-},{"debug":42,"parseuri":35}],42:[function(require,module,exports){
+},{"debug":43,"parseuri":36}],43:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"./debug":43,"_process":36,"dup":21}],43:[function(require,module,exports){
+},{"./debug":44,"_process":37,"dup":21}],44:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22,"ms":32}],44:[function(require,module,exports){
+},{"dup":22,"ms":33}],45:[function(require,module,exports){
 /*global Blob,File*/
 
 /**
@@ -8378,7 +8381,7 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-},{"./is-buffer":46,"isarray":49}],45:[function(require,module,exports){
+},{"./is-buffer":47,"isarray":50}],46:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -8795,7 +8798,7 @@ function error(msg) {
   };
 }
 
-},{"./binary":44,"./is-buffer":46,"component-emitter":10,"debug":47,"isarray":49}],46:[function(require,module,exports){
+},{"./binary":45,"./is-buffer":47,"component-emitter":10,"debug":48,"isarray":50}],47:[function(require,module,exports){
 (function (Buffer){
 
 module.exports = isBuf;
@@ -8819,13 +8822,13 @@ function isBuf(obj) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":8}],47:[function(require,module,exports){
+},{"buffer":8}],48:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"./debug":48,"_process":36,"dup":21}],48:[function(require,module,exports){
+},{"./debug":49,"_process":37,"dup":21}],49:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22,"ms":32}],49:[function(require,module,exports){
+},{"dup":22,"ms":33}],50:[function(require,module,exports){
 arguments[4][27][0].apply(exports,arguments)
-},{"dup":27}],50:[function(require,module,exports){
+},{"dup":27}],51:[function(require,module,exports){
 module.exports = toArray
 
 function toArray(list, index) {
@@ -8840,7 +8843,7 @@ function toArray(list, index) {
     return array
 }
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 'use strict';
 
 var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
@@ -8910,7 +8913,7 @@ yeast.encode = encode;
 yeast.decode = decode;
 module.exports = yeast;
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9182,7 +9185,196 @@ var Component = function () {
 
 exports.default = Component;
 
-},{"../Exceptions/InvalidMoveException":58,"../Global":60}],53:[function(require,module,exports){
+},{"../Exceptions/InvalidMoveException":60,"../Global":62}],54:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.DijkstraPathFinder = exports.Node = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Global = require('../Global');
+
+var _Global2 = _interopRequireDefault(_Global);
+
+var _hashids = require('hashids');
+
+var _hashids2 = _interopRequireDefault(_hashids);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Node = exports.Node = function () {
+    function Node(x, y, parent) {
+        _classCallCheck(this, Node);
+
+        this._id = new _hashids2.default().encode(x, y);
+        this.parent = parent;
+        this.x = x;
+        this.y = y;
+        this.visited = false;
+        this.neighbour = [];
+        this.getCost();
+    }
+
+    _createClass(Node, [{
+        key: 'getCost',
+        value: function getCost() {
+            if (this.parent) {
+                this.size = this.parent.cost + 1;
+            } else {
+                this.size = 0;
+            }
+        }
+    }, {
+        key: 'getCoordinate',
+        value: function getCoordinate() {
+            return new Object({ x: this.x, y: this.y });
+        }
+    }, {
+        key: 'addNeighbour',
+        value: function addNeighbour(node) {
+            this.neighbour.push(node);
+        }
+    }, {
+        key: 'getUnvisitedNeighbour',
+        value: function getUnvisitedNeighbour() {
+            return this.neighbour.filter(function (each) {
+                return !each.visited;
+            });
+        }
+    }, {
+        key: 'removeNeighbour',
+        value: function removeNeighbour(node) {
+            this.neighbour = this.neighbour.filter(function (item) {
+                return item !== node;
+            });
+        }
+    }]);
+
+    return Node;
+}();
+
+;
+
+var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
+    function DijkstraPathFinder(start, destination) {
+        _classCallCheck(this, DijkstraPathFinder);
+
+        this.start = start;
+        this.destination = destination;
+        this.shortestPaths = new Object();
+        this.shortestPathFrom(destination);
+    }
+
+    _createClass(DijkstraPathFinder, [{
+        key: 'scanAround',
+        value: function scanAround(node) {
+            var c = node.x;
+            var r = node.y;
+
+            if (this.isPassible(r + 1, c) && this.notCollideParent(r + 1, c, node)) {
+                var neighbour = new Node(r + 1, c);
+                node.addNeighbour(neighbour);
+            } else if (this.isPassible(r, c + 1) && this.notCollideParent(r, c + 1, node)) {
+                var _neighbour = new Node(r, c + 1);
+                node.addNeighbour(_neighbour);
+            } else if (this.isPassible(r - 1, c) && this.notCollideParent(r - 1, c, node)) {
+                var _neighbour2 = new Node(r - 1, c);
+                node.addNeighbour(_neighbour2);
+            } else if (this.isPassible(r, c - 1) && this.notCollideParent(r, c - 1, node)) {
+                var _neighbour3 = new Node(r, c - 1);
+                node.addNeighbour(_neighbour3);
+            }
+
+            return node.getUnvisitedNeighbour();
+        }
+    }, {
+        key: 'isPassible',
+        value: function isPassible(r, c) {
+            var limit = _Global2.default.getLimit();
+            var sizeR = limit.x;
+            var sizeC = limit.y;
+            return r >= 0 && r < sizeR && c >= 0 && c < sizeC;
+        }
+    }, {
+        key: 'notCollideParent',
+        value: function notCollideParent(r, c, sourceNode) {
+            return sourceNode.parent == null || sourceNode.parent.x != c && sourceNode.parent.y != r;
+        }
+    }, {
+        key: 'shortestPathFrom',
+        value: function shortestPathFrom(goal) {
+            var currNode = new Node(this.x, this.y);
+            while (currNode && !currNode.visited) {
+                var currNeighBours = currNode.getUnvisitedNeighbour();
+                if (this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
+                    var unvisited = this.scanAround(currNode);
+                    try {
+                        currNode = unvisited[0];
+                    } catch (e) {
+                        // If no children left to visit, go back to the parent.
+                        currNode = currNode.parent;
+                    }
+                } else {
+                    if (currNode.parent) {
+                        currNode.parent.removeNeighbour(currNode);
+                    }
+                    currNode.visited = true;
+                    currNode = currNode.parent;
+                }
+            }
+            console.log(this.shortestPaths);
+            return this.shortestPaths;
+        }
+    }, {
+        key: 'isNotDestination',
+        value: function isNotDestination(node) {
+            return node._id !== this.destination._id;
+        }
+    }, {
+        key: 'explorable',
+        value: function explorable(node) {
+            /* @desc: Find if the path is shorter than what we currently have.
+             * @return: true is shorter, also replace with the new path.
+             *          false if longer.
+             */
+            var currNode = node;
+            var currPath = [];
+
+            try {
+                var currSize = this.shortestPaths[currNode._id].length;
+                if (currNode.size < currSize) {
+                    while (currNode.parent) {
+                        currPath.push(currNode.getCoordinate());
+                        currNode = currNode.parent;
+                    }
+                    currPath.push(currNode.getCoordinate());
+                    this.shortestPaths[node._id] = currPath;
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (e) {
+                /* if not in the dictionary */
+                while (currNode.parent) {
+                    currPath.push(currNode.getCoordinate());
+                    currNode = currNode.parent;
+                }
+                currPath.push(currNode.getCoordinate());
+                this.shortestPaths[node._id] = currPath;
+                return true;
+            }
+        }
+    }]);
+
+    return DijkstraPathFinder;
+}();
+
+},{"../Global":62,"hashids":29}],55:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9279,7 +9471,7 @@ var Driver = exports.Driver = function () {
     return Driver;
 }();
 
-},{}],54:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9349,7 +9541,7 @@ var Map = function () {
 
 exports.default = Map;
 
-},{"../GameEngine":59,"../Global":60}],55:[function(require,module,exports){
+},{"../GameEngine":61,"../Global":62}],57:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9363,6 +9555,12 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 var _Component2 = require('./Component');
 
 var _Component3 = _interopRequireDefault(_Component2);
+
+var _Global = require('../Global');
+
+var _Global2 = _interopRequireDefault(_Global);
+
+var _DijkstraPathFinder = require('./DijkstraPathFinder');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9390,7 +9588,6 @@ var Monster = function (_Component) {
         _this.npc = true;
         _this.socket = socket;
         _this.automove();
-        _this.mapComponent = mapComponent;
         return _this;
     }
 
@@ -9419,43 +9616,59 @@ var Monster = function (_Component) {
     }, {
         key: 'automove',
         value: function automove() {
+            var _this2 = this;
+
+            this.socket.on("update", function (playerList) {
+                var currentPostion = _Global2.default.convertToGrid(_this2.x, _this2.y);
+                var start = new _DijkstraPathFinder.Node(currentPostion[0], currentPostion[1], null);
+                var shortestPath = [];
+                for (var i in playerList) {
+                    var player = playerList[i];
+                    var playerPositon = new _DijkstraPathFinder.Node(player.x, player.y, null);
+                    var finder = new _DijkstraPathFinder.DijkstraPathFinder(start, playerPositon);
+                    // console.log('finder', finder);
+                    if (shortestPath.length == 0) {
+                        shortestPath = finder;
+                    } else if (finder.length < shortestPath.length) {
+                        shortestPath = finder;
+                    }
+                }
+                console.log(shortestPath);
+            });
             /* 
             Random pattern move algorithm.
             */
-            console.log('mapComponent', this.mapComponent);
-            var patternA = [1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 3, 3, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0];
-            var patternB = [2, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2, 2, 3, 3, 3, 3];
-            var self = this;
-            var choices = Math.floor(Math.random() * Math.floor(2));
-            var stepMove = choices == 1 ? stepMove = [].concat(patternA) : [].concat(patternB);
-            this.auto = setInterval(function () {
-                var choice = stepMove.pop();
-                if (choice == undefined) {
-                    choices = Math.floor(Math.random() * Math.floor(2));
-                    stepMove = choices == 1 ? stepMove = [].concat(patternA) : [].concat(patternB);
-                }
-                switch (choice) {
-                    case 0:
-                        self.moveLeft();
-                        break;
-                    case 1:
-                        self.moveUp();
-                        break;
-                    case 2:
-                        self.moveDown();
-                        break;
-                    case 3:
-                        self.moveRight();
-                        break;
-                }
-                self.socket.emit("move", self.getPosition());
-            }, 1000 / 4);
+            // var patternA = [1,1,1,1,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,1,3,3,3,3,1,1,1,1,0,0,0,0];
+            // var patternB = [2,2,2,2,0,0,0,0,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,0,0,0,0,2,0,0,0,0,2,2,2,2,3,3,3,3];
+            // var self = this;
+            // var choices = Math.floor(Math.random() * Math.floor(2));
+            // var stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
+            // this.auto = setInterval(function () {
+            //     var choice = stepMove.pop();
+            //     if (choice == undefined) {
+            //         choices = Math.floor(Math.random() * Math.floor(2));
+            //         stepMove = (choices == 1) ? stepMove = [...patternA] : [...patternB];
+            //     }
+            //     switch(choice) {
+            //         case 0:
+            //             self.moveLeft();
+            //             break;
+            //         case 1:
+            //             self.moveUp();
+            //             break;
+            //         case 2:
+            //             self.moveDown();
+            //             break;
+            //         case 3:
+            //             self.moveRight();
+            //             break;
+            //     }
+            //     self.socket.emit("move", self.getPosition());
+            // }, 1000/4);
         }
     }, {
         key: 'init',
         value: function init() {
-            var _this2 = this;
-
             /* 
             Create a socket listener, listen for movement of every player on the map, 
             and perform check kill
@@ -9466,7 +9679,7 @@ var Monster = function (_Component) {
                 self.checkKill();
             });
             this.socket.on("endGame", function () {
-                clearInterval(_this2.auto);
+                // clearInterval(this.auto);
             });
         }
     }]);
@@ -9476,7 +9689,7 @@ var Monster = function (_Component) {
 
 exports.default = Monster;
 
-},{"./Component":52}],56:[function(require,module,exports){
+},{"../Global":62,"./Component":53,"./DijkstraPathFinder":54}],58:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9534,7 +9747,7 @@ var Player = function (_Component) {
 
 exports.default = Player;
 
-},{"./Component":52}],57:[function(require,module,exports){
+},{"./Component":53}],59:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9568,7 +9781,7 @@ var Exception = function () {
 
 exports.default = Exception;
 
-},{}],58:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9605,7 +9818,7 @@ var InvalidMoveException = exports.InvalidMoveException = function (_Exception) 
     return InvalidMoveException;
 }(_Exception3.default);
 
-},{"./Exception":57}],59:[function(require,module,exports){
+},{"./Exception":59}],61:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9763,7 +9976,7 @@ var GameEngine = function () {
 
 exports.default = GameEngine;
 
-},{"./Components/Component":52,"./Components/Driver":53,"./Components/Map":54,"./Components/Monster":55,"./Components/Player":56,"./Global":60,"socket.io-client":37}],60:[function(require,module,exports){
+},{"./Components/Component":53,"./Components/Driver":55,"./Components/Map":56,"./Components/Monster":57,"./Components/Player":58,"./Global":62,"socket.io-client":38}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9815,6 +10028,12 @@ var Global = function () {
             return [[1, 1, 1, 1, 2, 1, 1, 1, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [2, 1, 1, 1, 1, 1, 1, 1, 2], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 1, 1, 1, 2, 1, 1, 1, 1]];
         }
     }, {
+        key: "getLimit",
+        value: function getLimit() {
+            var grid = this.getGrid();
+            return Object({ x: grid[0].length, y: grid.length });
+        }
+    }, {
         key: "getBSize",
         value: function getBSize() {
             /* 
@@ -9829,6 +10048,11 @@ var Global = function () {
             Set resolution of the canvas
             */
             return 720;
+        }
+    }, {
+        key: "convertToGrid",
+        value: function convertToGrid(x, y) {
+            return [x / this.getBSize(), y / this.getBSize()];
         }
     }, {
         key: "getHost",
@@ -9854,7 +10078,7 @@ var Global = function () {
 
 exports.default = Global;
 
-},{"ip":31}],61:[function(require,module,exports){
+},{"ip":32}],63:[function(require,module,exports){
 'use strict';
 
 var _GameEngine = require('./GameEngine');
@@ -9873,4 +10097,4 @@ Main function link DOM with the Game Engine
 var main = new _GameEngine2.default(document.querySelector("canvas"), _Global2.default.resolution(), _Global2.default.resolution());
 main.render();
 
-},{"./GameEngine":59,"./Global":60}]},{},[61]);
+},{"./GameEngine":61,"./Global":62}]},{},[63]);
