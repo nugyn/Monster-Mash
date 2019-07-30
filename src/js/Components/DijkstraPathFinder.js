@@ -50,8 +50,8 @@ export class DijkstraPathFinder {
     scanAround(node) {
         let c = node.x;
         let r = node.y;
-
-        console.log(c + r);
+    
+        console.log("[ScanAround]" + c + " "+ r);
 
         if(this.isPassible(r+1, c) && this.notCollideParent(r + 1, c, node)){
             let neighbour = new Node(r + 1, c, node);
@@ -73,7 +73,7 @@ export class DijkstraPathFinder {
         return node.getUnvisitedNeighbour();
 
     }
- ""
+ 
     isPassible(r, c){
         let limit = Global.getLimit();
         let sizeR = limit.x;
@@ -86,11 +86,12 @@ export class DijkstraPathFinder {
         (sourceNode.parent.x != c && sourceNode.parent.y != r);
     }
 
-    shortestPathFrom(source, goal) {
+    shortestPathFrom(source) {
         let currNode = new Node(source.x, source.y, null);
         while(currNode && !currNode.visited) {
             let currNeighBours = currNode.getUnvisitedNeighbour();
             if(this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
+                console.log("[error]");
                 let unvisited = this.scanAround(currNode);
                 try{
                     currNode = unvisited[0];
@@ -99,6 +100,7 @@ export class DijkstraPathFinder {
                     currNode = currNode.parent;
                 }
             } else {
+                console.log("[error 2]");
                 if(currNode.parent) {
                     currNode.parent.removeNeighbour(currNode);
                 }

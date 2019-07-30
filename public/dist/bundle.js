@@ -9279,7 +9279,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
             var c = node.x;
             var r = node.y;
 
-            console.log(c + r);
+            console.log("[ScanAround]" + c + " " + r);
 
             if (this.isPassible(r + 1, c) && this.notCollideParent(r + 1, c, node)) {
                 var neighbour = new Node(r + 1, c, node);
@@ -9312,11 +9312,12 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
         }
     }, {
         key: 'shortestPathFrom',
-        value: function shortestPathFrom(goal) {
-            var currNode = new Node(this.x, this.y, null);
+        value: function shortestPathFrom(source) {
+            var currNode = new Node(source.x, source.y, null);
             while (currNode && !currNode.visited) {
                 var currNeighBours = currNode.getUnvisitedNeighbour();
                 if (this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
+                    console.log("[error]");
                     var unvisited = this.scanAround(currNode);
                     try {
                         currNode = unvisited[0];
@@ -9325,6 +9326,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
                         currNode = currNode.parent;
                     }
                 } else {
+                    console.log("[error 2]");
                     if (currNode.parent) {
                         currNode.parent.removeNeighbour(currNode);
                     }
