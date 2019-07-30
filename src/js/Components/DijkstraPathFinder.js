@@ -73,7 +73,7 @@ export class DijkstraPathFinder {
         return node.getUnvisitedNeighbour();
 
     }
-
+ ""
     isPassible(r, c){
         let limit = Global.getLimit();
         let sizeR = limit.x;
@@ -86,8 +86,8 @@ export class DijkstraPathFinder {
         (sourceNode.parent.x != c && sourceNode.parent.y != r);
     }
 
-    shortestPathFrom(goal) {
-        let currNode = new Node(this.x, this.y, null);
+    shortestPathFrom(source, goal) {
+        let currNode = new Node(source.x, source.y, null);
         while(currNode && !currNode.visited) {
             let currNeighBours = currNode.getUnvisitedNeighbour();
             if(this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
