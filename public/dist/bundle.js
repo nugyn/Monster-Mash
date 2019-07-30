@@ -9232,7 +9232,10 @@ var Node = exports.Node = function () {
     }, {
         key: 'getCoordinate',
         value: function getCoordinate() {
-            return new Object({ x: this.x, y: this.y });
+            var obj = new Object({ x: this.x, y: this.y });
+            // console.log(this.x + this.y);
+            // console.log("object " + obj.x + obj.y);
+            return obj;
         }
     }, {
         key: 'addNeighbour',
@@ -9276,17 +9279,19 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
             var c = node.x;
             var r = node.y;
 
+            console.log(c + r);
+
             if (this.isPassible(r + 1, c) && this.notCollideParent(r + 1, c, node)) {
-                var neighbour = new Node(r + 1, c);
+                var neighbour = new Node(r + 1, c, node);
                 node.addNeighbour(neighbour);
             } else if (this.isPassible(r, c + 1) && this.notCollideParent(r, c + 1, node)) {
-                var _neighbour = new Node(r, c + 1);
+                var _neighbour = new Node(r, c + 1, node);
                 node.addNeighbour(_neighbour);
             } else if (this.isPassible(r - 1, c) && this.notCollideParent(r - 1, c, node)) {
-                var _neighbour2 = new Node(r - 1, c);
+                var _neighbour2 = new Node(r - 1, c, node);
                 node.addNeighbour(_neighbour2);
             } else if (this.isPassible(r, c - 1) && this.notCollideParent(r, c - 1, node)) {
-                var _neighbour3 = new Node(r, c - 1);
+                var _neighbour3 = new Node(r, c - 1, node);
                 node.addNeighbour(_neighbour3);
             }
 
@@ -9308,7 +9313,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
     }, {
         key: 'shortestPathFrom',
         value: function shortestPathFrom(goal) {
-            var currNode = new Node(this.x, this.y);
+            var currNode = new Node(this.x, this.y, null);
             while (currNode && !currNode.visited) {
                 var currNeighBours = currNode.getUnvisitedNeighbour();
                 if (this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
@@ -9327,7 +9332,6 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
                     currNode = currNode.parent;
                 }
             }
-            console.log(this.shortestPaths);
             return this.shortestPaths;
         }
     }, {
@@ -9342,6 +9346,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
              * @return: true is shorter, also replace with the new path.
              *          false if longer.
              */
+
             var currNode = node;
             var currPath = [];
 
@@ -9352,6 +9357,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
                         currPath.push(currNode.getCoordinate());
                         currNode = currNode.parent;
                     }
+
                     currPath.push(currNode.getCoordinate());
                     this.shortestPaths[node._id] = currPath;
                     return true;
@@ -9360,6 +9366,7 @@ var DijkstraPathFinder = exports.DijkstraPathFinder = function () {
                 }
             } catch (e) {
                 /* if not in the dictionary */
+
                 while (currNode.parent) {
                     currPath.push(currNode.getCoordinate());
                     currNode = currNode.parent;
@@ -9633,7 +9640,7 @@ var Monster = function (_Component) {
                         shortestPath = finder;
                     }
                 }
-                console.log(shortestPath);
+                //console.log(shortestPath);
             });
             /* 
             Random pattern move algorithm.
@@ -10061,7 +10068,7 @@ var Global = function () {
             Set host domain
             */
             // return "http://" + ip.address() + ":" + this.getPort();
-            return "http://10.132.103.236:" + this.getPort();
+            return "http://10.132.93.206:" + this.getPort();
         }
     }, {
         key: "getPort",

@@ -20,7 +20,10 @@ export class Node {
         }
     }
     getCoordinate() {
-        return new Object({ x:this.x, y:this.y });
+        let obj = new Object({ x:this.x, y:this.y });
+        // console.log(this.x + this.y);
+        // console.log("object " + obj.x + obj.y);
+        return obj;
     }
 
     addNeighbour(node) {
@@ -48,20 +51,22 @@ export class DijkstraPathFinder {
         let c = node.x;
         let r = node.y;
 
+        console.log(c + r);
+
         if(this.isPassible(r+1, c) && this.notCollideParent(r + 1, c, node)){
-            let neighbour = new Node(r + 1, c);
+            let neighbour = new Node(r + 1, c, node);
             node.addNeighbour(neighbour);
         }
         else if(this.isPassible(r, c + 1) && this.notCollideParent(r, c + 1, node)){
-            let neighbour = new Node(r, c + 1);
+            let neighbour = new Node(r, c + 1, node);
             node.addNeighbour(neighbour);
         }
         else if(this.isPassible(r - 1, c) && this.notCollideParent(r - 1, c, node)){
-            let neighbour = new Node(r - 1, c);
+            let neighbour = new Node(r - 1, c, node);
             node.addNeighbour(neighbour);
         }
         else if(this.isPassible(r, c - 1) && this.notCollideParent(r, c - 1, node)){
-            let neighbour = new Node(r, c - 1);
+            let neighbour = new Node(r, c - 1, node);
             node.addNeighbour(neighbour);
         }
 
@@ -82,7 +87,7 @@ export class DijkstraPathFinder {
     }
 
     shortestPathFrom(goal) {
-        let currNode = new Node(this.x, this.y);
+        let currNode = new Node(this.x, this.y, null);
         while(currNode && !currNode.visited) {
             let currNeighBours = currNode.getUnvisitedNeighbour();
             if(this.explorable(currNode) && this.isNotDestination(currNode) || currNeighBours && currNeighBours.length > 0) {
@@ -101,7 +106,6 @@ export class DijkstraPathFinder {
                 currNode = currNode.parent;
             }
         }
-        console.log(this.shortestPaths);
         return this.shortestPaths;
     }
 
@@ -114,6 +118,7 @@ export class DijkstraPathFinder {
          * @return: true is shorter, also replace with the new path.
          *          false if longer.
          */
+
         let currNode = node;
         const currPath = [];
 
@@ -124,6 +129,7 @@ export class DijkstraPathFinder {
                     currPath.push(currNode.getCoordinate());
                     currNode = currNode.parent;
                 }
+              
                 currPath.push(currNode.getCoordinate());
                 this.shortestPaths[node._id] = currPath;
                 return true;
@@ -132,6 +138,7 @@ export class DijkstraPathFinder {
             }
         } catch (e) {
             /* if not in the dictionary */
+        
             while(currNode.parent) {
                 currPath.push(currNode.getCoordinate());
                 currNode = currNode.parent;

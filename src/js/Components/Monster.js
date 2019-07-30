@@ -53,7 +53,7 @@ export default class Monster extends Component {
                     shortestPath = finder;
                 }
             }
-            console.log(shortestPath);
+            //console.log(shortestPath);
         });
         /* 
         Random pattern move algorithm.
