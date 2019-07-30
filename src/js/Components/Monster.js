@@ -1,4 +1,5 @@
 import Component from './Component';
+import Global from '../Global';
 export default class Monster extends Component {
     /* 
     Monster:

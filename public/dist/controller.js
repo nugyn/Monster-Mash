@@ -9757,7 +9757,7 @@ var Global = function () {
             Set host domain
             */
             // return "http://" + ip.address() + ":" + this.getPort();
-            return "http://10.132.109.63:" + this.getPort();
+            return "http://10.132.103.236:" + this.getPort();
         }
     }, {
         key: "getPort",

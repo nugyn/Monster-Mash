@@ -35,6 +35,10 @@ export default class Global {
             [1, 1, 1, 1, 2, 1, 1, 1, 1]
         ]);
     }
+    static getLimit() {
+        let grid = this.getGrid();
+        return Object({ x: grid[0].length, y: grid.length });
+    }
     static getBSize() {
         /* 
         Calculate the block size of a player based on resolution and grid
@@ -48,12 +52,16 @@ export default class Global {
         return 720;
     }
 
+    static convertToGrid(x,y) {
+        return [x / this.getBSize(), y / this.getBSize()];
+    }
+
     static getHost() {
         /* 
         Set host domain
         */
         // return "http://" + ip.address() + ":" + this.getPort();
-        return  "http://10.132.109.63:" + this.getPort();
+        return  "http://10.132.103.236:" + this.getPort();
     }
 
     static getPort() {

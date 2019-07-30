@@ -9350,7 +9350,7 @@ var Map = function () {
 exports.default = Map;
 
 },{"../GameEngine":59,"../Global":60}],55:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -9360,7 +9360,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _Component2 = require("./Component");
+var _Component2 = require('./Component');
 
 var _Component3 = _interopRequireDefault(_Component2);
 
@@ -9386,23 +9386,24 @@ var Monster = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Monster.__proto__ || Object.getPrototypeOf(Monster)).call(this, id, x, y, name, false, mapComponent, socket, drawTool, monsterColor));
 
         _this.alive = null;
-        _get(Monster.prototype.__proto__ || Object.getPrototypeOf(Monster.prototype), "control", _this).call(_this, false);
+        _get(Monster.prototype.__proto__ || Object.getPrototypeOf(Monster.prototype), 'control', _this).call(_this, false);
         _this.npc = true;
         _this.socket = socket;
         _this.automove();
+        _this.mapComponent = mapComponent;
         return _this;
     }
 
     _createClass(Monster, [{
-        key: "getPosition",
+        key: 'getPosition',
         value: function getPosition() {
             /* 
             Return the current object's position.
             */
-            return _get(Monster.prototype.__proto__ || Object.getPrototypeOf(Monster.prototype), "getPosition", this).call(this);
+            return _get(Monster.prototype.__proto__ || Object.getPrototypeOf(Monster.prototype), 'getPosition', this).call(this);
         }
     }, {
-        key: "checkKill",
+        key: 'checkKill',
         value: function checkKill() {
             /* 
             Look through the player list, kill the player which share the same position
@@ -9416,11 +9417,12 @@ var Monster = function (_Component) {
             }
         }
     }, {
-        key: "automove",
+        key: 'automove',
         value: function automove() {
             /* 
             Random pattern move algorithm.
             */
+            console.log('mapComponent', this.mapComponent);
             var patternA = [1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 3, 3, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0];
             var patternB = [2, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2, 2, 3, 3, 3, 3];
             var self = this;
@@ -9450,7 +9452,7 @@ var Monster = function (_Component) {
             }, 1000 / 4);
         }
     }, {
-        key: "init",
+        key: 'init',
         value: function init() {
             var _this2 = this;
 
@@ -9835,7 +9837,7 @@ var Global = function () {
             Set host domain
             */
             // return "http://" + ip.address() + ":" + this.getPort();
-            return "http://10.132.109.63:" + this.getPort();
+            return "http://10.132.103.236:" + this.getPort();
         }
     }, {
         key: "getPort",
